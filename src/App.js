@@ -1,5 +1,5 @@
 import React, { Component } from 'react';
-import DatePicker from './DatePicker';
+import DatePicker2 from './DatePicker2';
 import 'tachyons';
 
   class App extends Component {
@@ -13,7 +13,7 @@ import 'tachyons';
             Comming Soon...
           </p>
           <div>
-          <DatePicker />
+          <DatePicker2 />
           </div>
         </div>
     );
