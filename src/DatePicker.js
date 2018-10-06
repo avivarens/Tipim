@@ -1,34 +1,43 @@
-import React, {component} from 'react';
-import DatePicker from 'react-datepicker';
-import moment from 'moment';
-import 'react-datepicker/dist/react-datepicker.css';
- 
-class App extends React.Component {
-  constructor (props) {
-    super(props)
-    this.state = {
-      startDate: moment()
-    };
-    this.handleChange = this.handleChange.bind(this);
-  }
- 
-  handleChange(date) {
-    this.setState({
-      startDate: date
-    });
-  }
- 
-  render() {
-    return (
-    <DatePicker
-      key='date' 
-      dateFormat="DD/MM/YYYY"
-      isClearable={true}
-      selected={this.state.startDate}
-      onChange={this.handleChange}
+import React from 'react';
+import PropTypes from 'prop-types';
+import { withStyles } from '@material-ui/core/styles';
+import TextField from '@material-ui/core/TextField';
+
+const styles = theme => ({
+  container: {
+    display: 'flex',
+    flexWrap: 'wrap',
+  },
+  textField: {
+    marginLeft: theme.spacing.unit,
+    marginRight: theme.spacing.unit,
+    width: 200,
+  },
+});
+
+function DatePickers(props, { onDateChange }) {
+  const { classes } = props;
+
+  return (
+    <div className='ma4 mt0' >
+    <form className={classes.container} noValidate>
+      <TextField
+        id="date"
+        label="Date"
+        type="date"
+        defaultValue="2017-05-24"
+        className='center br5 shadow-2 {classes.textField}'
+        InputLabelProps={{
+          shrink: true,
+        }}
       />
-    )  
-  }
+    </form>
+    </div>
+  );
 }
 
-export default DatePicker;
+DatePickers.propTypes = {
+  classes: PropTypes.object.isRequired,
+};
+
+export default withStyles(styles)(DatePickers);
